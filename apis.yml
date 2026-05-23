@@ -1,0 +1,118 @@
+aid: bitso
+name: Bitso
+description: >-
+  Bitso is one of Latin America's largest cryptocurrency exchanges and
+  stablecoin-rail providers, serving Mexico, Argentina, Brazil, Colombia,
+  and other LATAM markets. Bitso exposes a public REST trading API and a
+  WebSocket feed at bitso.com/api/v3 for market data, order management,
+  conversions, OTC / RFQ, and account operations; a Payouts & Pay-Ins API
+  for cross-border crypto and fiat disbursements; and the Juno API for
+  Mexican peso (MXN) rails and stablecoin programmable money. API and
+  OpenAPI references are catalogued at docs.bitso.com.
+type: Index
+image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+access: 3rd-Party
+position: Producer
+created: '2026-05-23'
+modified: '2026-05-23'
+tags:
+  - Cryptocurrency
+  - Exchange
+  - Trading
+  - Stablecoins
+  - Payouts
+  - Cross Border
+  - Latin America
+  - Mexico
+  - Fintech
+url: >-
+  https://raw.githubusercontent.com/api-evangelist/bitso/refs/heads/main/apis.yml
+specificationVersion: '0.20'
+apis:
+  - aid: bitso:rest-api
+    name: Bitso Trading REST API (v3)
+    description: >-
+      Public and authenticated REST endpoints for Bitso's exchange - books,
+      ticker, trades, candles, balance, order placement and cancellation,
+      conversions, RFQ / OTC quoting and execution, account configuration,
+      and (where available) margin trading. Authenticated calls are signed
+      with API key, nonce, and HMAC.
+    humanURL: https://docs.bitso.com/bitso-api/docs
+    baseURL: https://api.bitso.com/v3
+    tags:
+      - Trading
+      - Exchange
+      - REST
+      - Market Data
+    properties:
+      - type: Documentation
+        url: https://docs.bitso.com/bitso-api/docs
+      - type: OpenAPI
+        url: https://docs.bitso.com/llms.txt
+  - aid: bitso:websocket
+    name: Bitso WebSocket API
+    description: >-
+      Real-time streaming channels for trades, order-book diffs, and full
+      order-book snapshots. Used by trading clients and market-data
+      consumers that need sub-second updates.
+    humanURL: https://docs.bitso.com/bitso-api/docs/general
+    baseURL: wss://ws.bitso.com
+    tags:
+      - WebSocket
+      - Streaming
+      - Market Data
+    properties:
+      - type: Documentation
+        url: https://docs.bitso.com/bitso-api/docs/general
+  - aid: bitso:payouts-funding
+    name: Bitso Payouts and Pay-Ins API
+    description: >-
+      Cross-border disbursement and collection API powered by stablecoin and
+      LATAM rails. Lets businesses fund into Bitso, convert between assets
+      and fiat, and pay out to destination accounts across supported
+      countries.
+    humanURL: https://docs.bitso.com/bitso-payouts-funding/docs/getting-started
+    baseURL: https://api.bitso.com
+    tags:
+      - Payouts
+      - Pay-Ins
+      - Cross Border
+      - Stablecoins
+    properties:
+      - type: Documentation
+        url: https://docs.bitso.com/bitso-payouts-funding/docs/getting-started
+  - aid: bitso:juno
+    name: Juno API
+    description: >-
+      Juno is Bitso's programmable-money platform for Mexican peso (MXN)
+      rails and stablecoin operations. The API supports account creation,
+      SPEI funding, MXNB stablecoin mint / redeem and on-chain transfer, and
+      destination payouts for fintechs operating in Mexico.
+    humanURL: https://docs.bitso.com/juno/docs/getting-started
+    baseURL: https://api.bitso.com
+    tags:
+      - Juno
+      - Stablecoin
+      - SPEI
+      - Mexico
+    properties:
+      - type: Documentation
+        url: https://docs.bitso.com/juno/docs/getting-started
+common:
+  - type: Website
+    url: https://bitso.com/
+  - type: Business
+    url: https://bitso.com/business
+  - type: Documentation
+    url: https://docs.bitso.com/
+  - type: OpenAPI Index
+    url: https://docs.bitso.com/llms.txt
+  - type: LinkedIn
+    url: https://www.linkedin.com/company/bitso
+  - type: GitHub
+    url: https://github.com/bitso
+  - type: Status
+    url: https://status.bitso.com/
+maintainers:
+  - FN: API Evangelist
+    url: https://apievangelist.com
