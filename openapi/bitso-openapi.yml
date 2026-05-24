@@ -1,0 +1,297 @@
+openapi: 3.1.0
+info:
+  title: Bitso Trading API
+  description: |
+    REST API for the Bitso cryptocurrency exchange platform. Provides public
+    market data endpoints (ticker, books, trades) and private endpoints
+    (account balance, order management, fees) that require HMAC-SHA256
+    signed requests with API key credentials.
+  version: "3"
+  contact:
+    name: Bitso API Support
+    url: https://docs.bitso.com
+servers:
+  - url: https://bitso.com
+    description: Production
+  - url: https://stage.bitso.com
+    description: Staging / sandbox
+security:
+  - bitsoAuth: []
+tags:
+  - name: Public
+    description: Public market data endpoints. No authentication required.
+  - name: Private
+    description: Authenticated account and trading endpoints.
+paths:
+  /api/v3/available_books:
+    get:
+      tags: [Public]
+      summary: List available trading books
+      operationId: listAvailableBooks
+      security: []
+      responses:
+        '200':
+          description: List of trading books.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessEnvelope'
+  /api/v3/ticker:
+    get:
+      tags: [Public]
+      summary: Get ticker
+      operationId: getTicker
+      security: []
+      parameters:
+        - in: query
+          name: book
+          required: true
+          schema:
+            type: string
+          example: btc_mxn
+          description: Trading book identifier (e.g. btc_mxn).
+      responses:
+        '200':
+          description: Ticker data for the specified book.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessEnvelope'
+  /api/v3/order_book:
+    get:
+      tags: [Public]
+      summary: Get order book
+      operationId: getOrderBook
+      security: []
+      parameters:
+        - in: query
+          name: book
+          required: true
+          schema:
+            type: string
+        - in: query
+          name: aggregate
+          schema:
+            type: boolean
+            default: true
+      responses:
+        '200':
+          description: Order book snapshot.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessEnvelope'
+  /api/v3/trades:
+    get:
+      tags: [Public]
+      summary: List recent trades
+      operationId: listTrades
+      security: []
+      parameters:
+        - in: query
+          name: book
+          required: true
+          schema:
+            type: string
+        - in: query
+          name: marker
+          schema:
+            type: string
+        - in: query
+          name: sort
+          schema:
+            type: string
+            enum: [asc, desc]
+        - in: query
+          name: limit
+          schema:
+            type: integer
+            maximum: 100
+      responses:
+        '200':
+          description: Recent trades.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessEnvelope'
+  /api/v3/balance:
+    get:
+      tags: [Private]
+      summary: Get account balance
+      operationId: getAccountBalance
+      responses:
+        '200':
+          description: Account balances per currency.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessEnvelope'
+  /api/v3/account_status:
+    get:
+      tags: [Private]
+      summary: Get account status
+      operationId: getAccountStatus
+      responses:
+        '200':
+          description: Account status.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessEnvelope'
+  /api/v3/fees:
+    get:
+      tags: [Private]
+      summary: Get customer fees
+      operationId: getFees
+      responses:
+        '200':
+          description: Fee schedule for the authenticated account.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessEnvelope'
+  /api/v3/open_orders:
+    get:
+      tags: [Private]
+      summary: List open orders
+      operationId: listOpenOrders
+      parameters:
+        - in: query
+          name: book
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Open orders for the account.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessEnvelope'
+  /api/v3/orders:
+    post:
+      tags: [Private]
+      summary: Place a new order
+      operationId: placeOrder
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PlaceOrderRequest'
+      responses:
+        '200':
+          description: Order accepted.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessEnvelope'
+  /api/v3/orders/{oid}:
+    get:
+      tags: [Private]
+      summary: Look up an order
+      operationId: lookupOrder
+      parameters:
+        - in: path
+          name: oid
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Order details.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessEnvelope'
+    delete:
+      tags: [Private]
+      summary: Cancel an order
+      operationId: cancelOrder
+      parameters:
+        - in: path
+          name: oid
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Cancellation acknowledged.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessEnvelope'
+  /api/v3/user_trades:
+    get:
+      tags: [Private]
+      summary: List the authenticated user's trades
+      operationId: listUserTrades
+      parameters:
+        - in: query
+          name: book
+          schema:
+            type: string
+        - in: query
+          name: marker
+          schema:
+            type: string
+        - in: query
+          name: sort
+          schema:
+            type: string
+            enum: [asc, desc]
+        - in: query
+          name: limit
+          schema:
+            type: integer
+            maximum: 100
+      responses:
+        '200':
+          description: User trade history.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessEnvelope'
+components:
+  securitySchemes:
+    bitsoAuth:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: |
+        Bitso HMAC scheme. Send `Authorization: Bitso <key>:<nonce>:<signature>`
+        where signature is `HMAC-SHA256(secret, nonce + method + path + body)`.
+  schemas:
+    SuccessEnvelope:
+      type: object
+      properties:
+        success:
+          type: boolean
+        payload:
+          description: Endpoint-specific payload.
+    PlaceOrderRequest:
+      type: object
+      required: [book, side, type]
+      properties:
+        book:
+          type: string
+          example: btc_mxn
+        side:
+          type: string
+          enum: [buy, sell]
+        type:
+          type: string
+          enum: [market, limit]
+        major:
+          type: string
+          description: Amount of the major currency.
+        minor:
+          type: string
+          description: Amount of the minor currency.
+        price:
+          type: string
+          description: Price (required for limit orders).
+        client_id:
+          type: string
+        time_in_force:
+          type: string
+          enum: [goodtillcancelled, fillorkill, immediateorcancel, postonly]
