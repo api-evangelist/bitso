@@ -64,6 +64,8 @@ apis:
     properties:
       - type: Documentation
         url: https://docs.bitso.com/bitso-api/docs/general
+      - type: AsyncAPI
+        url: https://raw.githubusercontent.com/api-evangelist/bitso/refs/heads/main/asyncapi/bitso-asyncapi.yml
   - aid: bitso:payouts-funding
     name: Bitso Payouts and Pay-Ins API
     description: >-

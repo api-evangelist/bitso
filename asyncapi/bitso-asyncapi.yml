@@ -1,0 +1,211 @@
+asyncapi: 2.6.0
+info:
+  title: Bitso WebSocket API
+  version: '1.0.0'
+  description: >-
+    Bitso's public real-time WebSocket feed for the Bitso cryptocurrency
+    exchange. Clients connect to a single endpoint and subscribe to one or
+    more channels per order book (e.g. btc_mxn). Three public channels are
+    documented: trades, orders (top 20 bid/ask snapshot updates), and
+    diff-orders (order-book deltas with a sequence number for gap
+    detection). The server also emits periodic keep-alive messages.
+  contact:
+    name: Bitso API Docs
+    url: https://docs.bitso.com/bitso-api/docs/general
+  license:
+    name: Bitso Terms of Service
+    url: https://bitso.com/legal/terms
+servers:
+  production:
+    url: ws.bitso.com
+    protocol: wss
+    description: Bitso production WebSocket endpoint (wss://ws.bitso.com).
+defaultContentType: application/json
+channels:
+  /:
+    description: >-
+      Single WebSocket endpoint. Clients send a subscribe action specifying
+      the order book and channel type, and receive a stream of envelope
+      messages tagged with type and book, plus periodic keep-alive frames.
+    publish:
+      operationId: clientSubscribe
+      summary: Subscribe to a channel for a given order book.
+      message:
+        oneOf:
+          - $ref: '#/components/messages/Subscribe'
+    subscribe:
+      operationId: serverStream
+      summary: Receive subscription acks, channel messages, and keep-alives.
+      message:
+        oneOf:
+          - $ref: '#/components/messages/SubscribeAck'
+          - $ref: '#/components/messages/KeepAlive'
+          - $ref: '#/components/messages/TradesMessage'
+          - $ref: '#/components/messages/OrdersMessage'
+          - $ref: '#/components/messages/DiffOrdersMessage'
+components:
+  messages:
+    Subscribe:
+      name: Subscribe
+      title: Subscribe to a channel
+      summary: >-
+        Sent by the client after the connection opens to subscribe to a
+        channel for a specific order book.
+      payload:
+        type: object
+        required:
+          - action
+          - book
+          - type
+        properties:
+          action:
+            type: string
+            enum:
+              - subscribe
+          book:
+            type: string
+            description: Order book identifier (e.g. btc_mxn, eth_mxn).
+            example: btc_mxn
+          type:
+            type: string
+            enum:
+              - trades
+              - orders
+              - diff-orders
+    SubscribeAck:
+      name: SubscribeAck
+      title: Subscription acknowledgement
+      summary: Server confirmation that a subscription was accepted.
+      payload:
+        type: object
+        properties:
+          action:
+            type: string
+            enum:
+              - subscribe
+          response:
+            type: string
+            enum:
+              - ok
+          time:
+            type: integer
+            description: Server timestamp (milliseconds since epoch).
+          type:
+            type: string
+            enum:
+              - trades
+              - orders
+              - diff-orders
+    KeepAlive:
+      name: KeepAlive
+      title: Keep-alive frame
+      summary: Periodic server keep-alive message.
+      payload:
+        type: object
+        required:
+          - type
+        properties:
+          type:
+            type: string
+            enum:
+              - ka
+    TradesMessage:
+      name: TradesMessage
+      title: Trade event
+      summary: >-
+        Emitted whenever the matching engine executes a trade in the
+        subscribed order book.
+      payload:
+        type: object
+        required:
+          - type
+          - book
+          - payload
+        properties:
+          type:
+            type: string
+            enum:
+              - trades
+          book:
+            type: string
+            example: btc_mxn
+          sent:
+            type: integer
+            description: Server send timestamp in milliseconds.
+          payload:
+            type: array
+            items:
+              type: object
+              description: >-
+                Trade record. Field names follow Bitso's documented
+                envelope; exact per-trade schema may include identifiers
+                for the maker/taker order, executed amount, and rate.
+    OrdersMessage:
+      name: OrdersMessage
+      title: Top-of-book orders update
+      summary: >-
+        Snapshot-style update of the top 20 bids and asks for the
+        subscribed book. Emitted when the top of book changes.
+      payload:
+        type: object
+        required:
+          - type
+          - book
+          - payload
+        properties:
+          type:
+            type: string
+            enum:
+              - orders
+          book:
+            type: string
+            example: btc_mxn
+          sent:
+            type: integer
+          payload:
+            type: object
+            description: Top-of-book bid and ask levels.
+            properties:
+              bids:
+                type: array
+                items:
+                  type: object
+              asks:
+                type: array
+                items:
+                  type: object
+    DiffOrdersMessage:
+      name: DiffOrdersMessage
+      title: Order-book delta
+      summary: >-
+        Incremental order-book change (new order, modification,
+        cancellation, or partial fill). Includes a sequence number so
+        clients can detect dropped messages and resync.
+      payload:
+        type: object
+        required:
+          - type
+          - book
+          - payload
+          - sequence
+        properties:
+          type:
+            type: string
+            enum:
+              - diff-orders
+          book:
+            type: string
+            example: btc_mxn
+          sent:
+            type: integer
+          sequence:
+            type: integer
+            description: >-
+              Monotonically increasing sequence number for gap detection.
+          payload:
+            type: array
+            items:
+              type: object
+              description: >-
+                Order-book delta entry describing the side, rate, amount,
+                value, status, and order identifier for the change.
