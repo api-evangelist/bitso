@@ -1,0 +1,18 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/bitso-openapi.yml
+summary:
+  types:
+  - apiKey
+  api_key_in:
+  - header
+schemes:
+- name: bitsoAuth
+  type: apiKey
+  in: header
+  parameter: Authorization
+  description: |-
+    Bitso HMAC scheme. Send `Authorization: Bitso <key>:<nonce>:<signature>`
+    where signature is `HMAC-SHA256(secret, nonce + method + path + body)`.
+  sources:
+  - openapi/bitso-openapi.yml

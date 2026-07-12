@@ -101,6 +101,12 @@ apis:
       - type: Documentation
         url: https://docs.bitso.com/juno/docs/getting-started
 common:
+  - type: TrustCenter
+    url: security/bitso-trust-center.yml
+  - type: DomainSecurity
+    url: security/bitso-domain-security.yml
+  - type: Authentication
+    url: authentication/bitso-authentication.yml
   - type: Website
     url: https://bitso.com/
   - type: Business
@@ -115,6 +121,8 @@ common:
     url: https://github.com/bitso
   - type: Status
     url: https://status.bitso.com/
+  - url: https://blog.bitso.com/
+    type: Blog
 maintainers:
   - FN: API Evangelist
     url: https://apievangelist.com
