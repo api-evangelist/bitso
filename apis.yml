@@ -101,6 +101,8 @@ apis:
       - type: Documentation
         url: https://docs.bitso.com/juno/docs/getting-started
 common:
+  - type: AgenticAccess
+    url: agentic-access/bitso-agentic-access.yml
   - type: TrustCenter
     url: security/bitso-trust-center.yml
   - type: DomainSecurity
