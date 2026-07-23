@@ -1,0 +1,143 @@
+openapi: 3.1.0
+info:
+  title: Bitso Trading Private Public API
+  description: 'REST API for the Bitso cryptocurrency exchange platform. Provides public
+
+    market data endpoints (ticker, books, trades) and private endpoints
+
+    (account balance, order management, fees) that require HMAC-SHA256
+
+    signed requests with API key credentials.
+
+    '
+  version: '3'
+  contact:
+    name: Bitso API Support
+    url: https://docs.bitso.com
+servers:
+- url: https://bitso.com
+  description: Production
+- url: https://stage.bitso.com
+  description: Staging / sandbox
+security:
+- bitsoAuth: []
+tags:
+- name: Public
+  description: Public market data endpoints. No authentication required.
+paths:
+  /api/v3/available_books:
+    get:
+      tags:
+      - Public
+      summary: List available trading books
+      operationId: listAvailableBooks
+      security: []
+      responses:
+        '200':
+          description: List of trading books.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessEnvelope'
+  /api/v3/ticker:
+    get:
+      tags:
+      - Public
+      summary: Get ticker
+      operationId: getTicker
+      security: []
+      parameters:
+      - in: query
+        name: book
+        required: true
+        schema:
+          type: string
+        example: btc_mxn
+        description: Trading book identifier (e.g. btc_mxn).
+      responses:
+        '200':
+          description: Ticker data for the specified book.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessEnvelope'
+  /api/v3/order_book:
+    get:
+      tags:
+      - Public
+      summary: Get order book
+      operationId: getOrderBook
+      security: []
+      parameters:
+      - in: query
+        name: book
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: aggregate
+        schema:
+          type: boolean
+          default: true
+      responses:
+        '200':
+          description: Order book snapshot.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessEnvelope'
+  /api/v3/trades:
+    get:
+      tags:
+      - Public
+      summary: List recent trades
+      operationId: listTrades
+      security: []
+      parameters:
+      - in: query
+        name: book
+        required: true
+        schema:
+          type: string
+      - in: query
+        name: marker
+        schema:
+          type: string
+      - in: query
+        name: sort
+        schema:
+          type: string
+          enum:
+          - asc
+          - desc
+      - in: query
+        name: limit
+        schema:
+          type: integer
+          maximum: 100
+      responses:
+        '200':
+          description: Recent trades.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SuccessEnvelope'
+components:
+  schemas:
+    SuccessEnvelope:
+      type: object
+      properties:
+        success:
+          type: boolean
+        payload:
+          description: Endpoint-specific payload.
+  securitySchemes:
+    bitsoAuth:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: 'Bitso HMAC scheme. Send `Authorization: Bitso <key>:<nonce>:<signature>`
+
+        where signature is `HMAC-SHA256(secret, nonce + method + path + body)`.
+
+        '
