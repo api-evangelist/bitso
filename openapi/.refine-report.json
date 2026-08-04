@@ -1,0 +1,16 @@
+{
+  "provider": "bitso",
+  "sources": [
+    "bitso-private-api-openapi.yml",
+    "bitso-public-api-openapi.yml"
+  ],
+  "outputs": [
+    "bitso-private-api-openapi.yml",
+    "bitso-public-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
