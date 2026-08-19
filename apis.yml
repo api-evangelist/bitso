@@ -40,7 +40,7 @@ tags:
   - Fintech
 url: >-
   https://raw.githubusercontent.com/api-evangelist/bitso/refs/heads/main/apis.yml
-specificationVersion: '0.20'
+specificationVersion: '0.23'
 apis:
 - aid: bitso:websocket
   name: Bitso WebSocket API
