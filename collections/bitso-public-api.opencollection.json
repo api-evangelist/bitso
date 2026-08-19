@@ -1,0 +1,112 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Bitso Trading Private Public API",
+    "version": "3"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Public",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List available trading books",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://bitso.com/api/v3/available_books"
+          },
+          "docs": "List available trading books"
+        },
+        {
+          "info": {
+            "name": "Get ticker",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://bitso.com/api/v3/ticker",
+            "params": [
+              {
+                "name": "book",
+                "value": "btc_mxn",
+                "type": "query",
+                "description": "Trading book identifier (e.g. btc_mxn)."
+              }
+            ]
+          },
+          "docs": "Get ticker"
+        },
+        {
+          "info": {
+            "name": "Get order book",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://bitso.com/api/v3/order_book",
+            "params": [
+              {
+                "name": "book",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "aggregate",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get order book"
+        },
+        {
+          "info": {
+            "name": "List recent trades",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://bitso.com/api/v3/trades",
+            "params": [
+              {
+                "name": "book",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "marker",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "List recent trades"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

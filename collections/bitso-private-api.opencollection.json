@@ -1,0 +1,161 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Bitso Trading Private API",
+    "version": "3"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Private",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get account balance",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://bitso.com/api/v3/balance"
+          },
+          "docs": "Get account balance"
+        },
+        {
+          "info": {
+            "name": "Get account status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://bitso.com/api/v3/account_status"
+          },
+          "docs": "Get account status"
+        },
+        {
+          "info": {
+            "name": "Get customer fees",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://bitso.com/api/v3/fees"
+          },
+          "docs": "Get customer fees"
+        },
+        {
+          "info": {
+            "name": "List open orders",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://bitso.com/api/v3/open_orders",
+            "params": [
+              {
+                "name": "book",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "List open orders"
+        },
+        {
+          "info": {
+            "name": "Place a new order",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://bitso.com/api/v3/orders",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Place a new order"
+        },
+        {
+          "info": {
+            "name": "Look up an order",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://bitso.com/api/v3/orders/:oid",
+            "params": [
+              {
+                "name": "oid",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Look up an order"
+        },
+        {
+          "info": {
+            "name": "Cancel an order",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://bitso.com/api/v3/orders/:oid",
+            "params": [
+              {
+                "name": "oid",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Cancel an order"
+        },
+        {
+          "info": {
+            "name": "List the authenticated user's trades",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://bitso.com/api/v3/user_trades",
+            "params": [
+              {
+                "name": "book",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "marker",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "List the authenticated user's trades"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
