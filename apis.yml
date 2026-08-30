@@ -45,7 +45,7 @@ tags:
   - Trading
   - Stablecoins
   - Payouts
-  - Cross-Border
+  - Cross Border
   - Latin America
   - Mexico
   - Fintech
@@ -90,8 +90,8 @@ apis:
   baseURL: https://api.bitso.com
   tags:
   - Payouts
-  - Payins
-  - Cross-Border
+  - Pay-Ins
+  - Cross Border
   - Stablecoins
   tags_raw:
   - Payouts
@@ -111,7 +111,7 @@ apis:
   baseURL: https://api.bitso.com
   tags:
   - Juno
-  - Stablecoins
+  - Stablecoin
   - SPEI
   - Mexico
   tags_raw:
