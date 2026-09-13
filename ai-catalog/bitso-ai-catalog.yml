@@ -32,6 +32,7 @@ conformance:
     errors: []
     warnings: []
     informational: []
+  did_web: null
 catalog:
   host_display_name: Bitso
   host_identifier: null
