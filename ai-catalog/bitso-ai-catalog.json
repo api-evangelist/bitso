@@ -1,0 +1,25 @@
+{
+  "specVersion": "1.0",
+  "host": {
+    "displayName": "Bitso"
+  },
+  "entries": [
+    {
+      "identifier": "urn:air:bitso.com:market-data:mcp",
+      "displayName": "Bitso Market Data (MCP)",
+      "type": "application/mcp-server-card+json",
+      "url": "https://bitso.com/.well-known/mcp/server-card.json",
+      "description": "Public real-time and historical crypto market data: order books, tickers, and OHLC candles.",
+      "capabilities": [
+        "list_books",
+        "get_market_summary",
+        "get_ohlc_candles"
+      ],
+      "representativeQueries": [
+        "what is the current price of bitcoin in Mexico",
+        "get me the order book for btc_mxn",
+        "show me the 5-day OHLC candles for eth_usd"
+      ]
+    }
+  ]
+}
