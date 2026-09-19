@@ -91,7 +91,7 @@ apis:
   baseURL: https://api.bitso.com
   tags:
   - Payouts
-  - Payins
+  - Pay-In
   - Cross-Border
   - Stablecoins
   tags_raw:
