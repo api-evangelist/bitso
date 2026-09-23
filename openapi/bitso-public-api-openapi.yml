@@ -1,15 +1,13 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Bitso Trading Private Public API
+  title: Bitso Trading Public API
   description: 'REST API for the Bitso cryptocurrency exchange platform. Provides public
 
     market data endpoints (ticker, books, trades) and private endpoints
 
     (account balance, order management, fees) that require HMAC-SHA256
 
-    signed requests with API key credentials.
-
-    '
+    signed requests with API key credentials.'
   version: '3'
   contact:
     name: Bitso API Support

@@ -1,4 +1,4 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
   title: Bitso Trading Private API
   description: 'REST API for the Bitso cryptocurrency exchange platform. Provides public
@@ -7,9 +7,7 @@ info:
 
     (account balance, order management, fees) that require HMAC-SHA256
 
-    signed requests with API key credentials.
-
-    '
+    signed requests with API key credentials.'
   version: '3'
   contact:
     name: Bitso API Support
@@ -174,13 +172,6 @@ paths:
                 $ref: '#/components/schemas/SuccessEnvelope'
 components:
   schemas:
-    SuccessEnvelope:
-      type: object
-      properties:
-        success:
-          type: boolean
-        payload:
-          description: Endpoint-specific payload.
     PlaceOrderRequest:
       type: object
       required:
@@ -219,6 +210,13 @@ components:
           - fillorkill
           - immediateorcancel
           - postonly
+    SuccessEnvelope:
+      type: object
+      properties:
+        success:
+          type: boolean
+        payload:
+          description: Endpoint-specific payload.
   securitySchemes:
     bitsoAuth:
       type: apiKey
