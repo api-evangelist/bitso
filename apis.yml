@@ -53,6 +53,7 @@ tags:
   - Latin America
   - Mexico
   - Fintech
+  - Real-Time
 tags_raw:
   - Cryptocurrency
   - Exchange
@@ -63,6 +64,7 @@ tags_raw:
   - Latin America
   - Mexico
   - Fintech
+  - Real-Time
 url: >-
   https://raw.githubusercontent.com/api-evangelist/bitso/refs/heads/main/apis.yml
 specificationVersion: '0.23'
