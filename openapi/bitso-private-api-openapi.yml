@@ -172,13 +172,6 @@ paths:
                 $ref: '#/components/schemas/SuccessEnvelope'
 components:
   schemas:
-    SuccessEnvelope:
-      type: object
-      properties:
-        success:
-          type: boolean
-        payload:
-          description: Endpoint-specific payload.
     PlaceOrderRequest:
       type: object
       required:
@@ -217,6 +210,13 @@ components:
           - fillorkill
           - immediateorcancel
           - postonly
+    SuccessEnvelope:
+      type: object
+      properties:
+        success:
+          type: boolean
+        payload:
+          description: Endpoint-specific payload.
   securitySchemes:
     bitsoAuth:
       type: apiKey
