@@ -86,6 +86,37 @@ edges:
     detected: '2026-10-20'
   detected_by: sweep-compliance-assurance.py
   first_seen: '2026-10-20'
+- partner_name: Cámara Argentina Fintech (member list)
+  partner: null
+  partner_match: register
+  type: register
+  channel: standard-directory
+  relationship: standard-participant
+  direction: partner-built
+  evidence: https://camarafintech.org/miembros/
+  category: Argentine fintech industry association membership
+  contract_reference:
+    register: Cámara Argentina Fintech (member list)
+    spec_file: null
+    standard: null
+    role: camara-fintech-member
+    registrations:
+    - registered_name: Bitso
+      licences:
+      - Cámara Argentina Fintech member
+      register_country: AR
+      matched_domain: bitso.com
+      matched_by: domain
+      register_id: camarafintech.org socio 1365
+      categories:
+      - cripto-y-blockchain
+    signal_note: 'participation only: membership of the national fintech association (listing is not conformance;
+      the member tier is carried in partner_tier)'
+    detected_by: sweep-argentina-fintech-registers.py
+    detected: '2026-10-21'
+  detected_by: sweep-argentina-fintech-registers.py
+  first_seen: '2026-10-21'
+  partner_tier: Fintech full
 generated: '2026-10-13'
 method: searched
 checked:
@@ -94,5 +125,11 @@ checked:
 - https://eucoc.cloud/en/public-register/list-of-adherent-services
 - https://github.com/meltano/hub
 - https://raw.githubusercontent.com/ccxt/ccxt/master/exchanges.json
+- https://camarafintech.org/miembros/
+- https://www.bcra.gob.ar/entidades-financieras/
+- https://www.bcra.gob.ar/registro-de-proveedores-de-servicios-de-pago/
+- https://www.cnv.gov.ar/SitioWeb/RegistrosPublicos/Agentes
+- https://www.cnv.gov.ar/SitioWeb/RegistrosPublicos/Psav
+- https://www.coelsa.com.ar/
 source:
 - https://github.com/meltano/hub
