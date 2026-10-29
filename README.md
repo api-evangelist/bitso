@@ -1,4 +1,4 @@
-# Bitso (bitso)
+# Bitso
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,125 +66,139 @@
 
 Bitso is one of Latin America's largest cryptocurrency exchanges and stablecoin-rail providers, serving Mexico, Argentina, Brazil, Colombia, and other LATAM markets. Bitso exposes a public REST trading API and a WebSocket feed at bitso.com/api/v3 for market data, order management, conversions, OTC / RFQ, and account operations; a Payouts & Pay-Ins API for cross-border crypto and fiat disbursements; and the Juno API for Mexican peso (MXN) rails and stablecoin programmable money. API and OpenAPI references are catalogued at docs.bitso.com.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/bitso/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/bitso/refs/heads/main/apis.yml)
+**Areas:** Cryptocurrency · Exchange · Trading · Stablecoins · Payouts · Cross-Border · Latin America · Mexico · Fintech · Real-Time
 
-## Scope
+## Bitso on APIs.io
 
-- **Type:** Index
-- **Position:** Producer
-- **Access:** 3rd-Party
+Everything profiled for Bitso is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/bitso/](https://apis.io/providers/bitso/)** — or go straight to one of the APIs or properties below.
 
-## Tags
+### APIs (5)
 
-- Cryptocurrency
-- Exchange
-- Trading
-- Stablecoins
-- Payouts
-- Cross Border
-- Latin America
-- Mexico
-- Fintech
+- [Bitso WebSocket API](https://apis.io/apis/bitso/websocket/) — Real-time streaming channels for trades, order-book diffs, and full order-book snapshots. Used by trading clients and market-data consumers that need…
+- [Bitso Payouts and Pay-Ins API](https://apis.io/apis/bitso/payouts-funding/) — Cross-border disbursement and collection API powered by stablecoin and LATAM rails. Lets businesses fund into Bitso, convert between assets and fiat, and…
+- [Juno API](https://apis.io/apis/bitso/juno/) — Juno is Bitso's programmable-money platform for Mexican peso (MXN) rails and stablecoin operations. The API supports account creation, SPEI funding, MXNB…
+- [Bitso Private API](https://apis.io/apis/bitso/bitso-private-api/) — Authenticated account and trading endpoints.
+- [Bitso Public API](https://apis.io/apis/bitso/bitso-public-api/) — Public market data endpoints. No authentication required.
 
-## Timestamps
+### Published properties
 
-- **Created:** 2026-05-23
-- **Modified:** 2026-05-23
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-## APIs
+#### AsyncAPI (1)
 
-### Bitso Trading REST API (v3)
+Event-driven and webhook contracts.
 
-Public and authenticated REST endpoints for Bitso's exchange - books, ticker, trades, candles, balance, order placement and cancellation, conversions, RFQ / OTC quoting and execution, account configuration, and (where available) margin trading. Authenticated calls are signed with API key, nonce, and HMAC.
+- [Bitso WebSocket API](https://apis.io/asyncapis/bitso/bitso-asyncapi/)
 
-- **Human URL:** [https://docs.bitso.com/bitso-api/docs](https://docs.bitso.com/bitso-api/docs)
-- **Base URL:** `https://api.bitso.com/v3`
+#### Event channels (1)
 
-#### Tags
+Individual events and webhooks the provider emits.
 
-- Trading
-- Exchange
-- REST
-- Market Data
+- [/](https://apis.io/channels/bitso/untitled/)
 
-#### Properties
+#### Agentic access (1)
 
-- [Documentation](https://docs.bitso.com/bitso-api/docs)
-- [OpenAPI](https://docs.bitso.com/llms.txt) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/bitso.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/bitso.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+Which operations an agent can call, which act, and which need a human in the loop.
 
-### Bitso WebSocket API
+- [Bitso Agentic Access](https://apis.io/agentic-access/bitso/bitso-agentic-access/)
 
-Real-time streaming channels for trades, order-book diffs, and full order-book snapshots. Used by trading clients and market-data consumers that need sub-second updates.
+#### Collections (3)
 
-- **Human URL:** [https://docs.bitso.com/bitso-api/docs/general](https://docs.bitso.com/bitso-api/docs/general)
-- **Base URL:** `wss://ws.bitso.com`
+Postman and Open Collection request collections.
 
-#### Tags
+- [Bitso Trading API](https://apis.io/collections/bitso/open-bitso/)
+- [Bitso Trading Private API](https://apis.io/collections/bitso/open-bitso-private-api/)
+- [Bitso Trading Private Public API](https://apis.io/collections/bitso/open-bitso-public-api/)
 
-- WebSocket
-- Streaming
-- Market Data
+#### Governance rules (1)
 
-#### Properties
+Spectral rulesets for the provider's contracts.
 
-- [Documentation](https://docs.bitso.com/bitso-api/docs/general)
-- [AsyncAPI](https://raw.githubusercontent.com/api-evangelist/bitso/refs/heads/main/asyncapi/bitso-asyncapi.yml) — [AsyncAPI Specification](https://www.asyncapi.com/docs/reference/specification/latest)
-- [Postman Collection](collections/bitso.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/bitso.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Bitso — asyncapi rules](https://apis.io/rules/bitso/bitso-asyncapi-spectral-rules/)
 
-### Bitso Payouts and Pay-Ins API
+#### Security (3)
 
-Cross-border disbursement and collection API powered by stablecoin and LATAM rails. Lets businesses fund into Bitso, convert between assets and fiat, and pay out to destination accounts across supported countries.
+Authentication, trust centre, and vulnerability disclosure.
 
-- **Human URL:** [https://docs.bitso.com/bitso-payouts-funding/docs/getting-started](https://docs.bitso.com/bitso-payouts-funding/docs/getting-started)
-- **Base URL:** `https://api.bitso.com`
+- [Bitso Authentication](https://apis.io/security/bitso/bitso-authentication/)
+- [Bitso Domain Security](https://apis.io/security/bitso/bitso-domain-security/)
+- [Bitso Trust Center](https://apis.io/security/bitso/bitso-trust-center/)
 
-#### Tags
+#### Plans and pricing (1)
 
-- Payouts
-- Pay-Ins
-- Cross Border
-- Stablecoins
+Published plans, tiers and prices.
 
-#### Properties
+- [Bitso Plans Pricing](https://apis.io/plans/bitso/bitso-plans-pricing/)
 
-- [Documentation](https://docs.bitso.com/bitso-payouts-funding/docs/getting-started)
-- [Postman Collection](collections/bitso.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/bitso.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+#### Rate limits (1)
 
-### Juno API
+Published request limits.
 
-Juno is Bitso's programmable-money platform for Mexican peso (MXN) rails and stablecoin operations. The API supports account creation, SPEI funding, MXNB stablecoin mint / redeem and on-chain transfer, and destination payouts for fintechs operating in Mexico.
+- [Bitso Rate Limits](https://apis.io/rate-limits/bitso/bitso-rate-limits/)
 
-- **Human URL:** [https://docs.bitso.com/juno/docs/getting-started](https://docs.bitso.com/juno/docs/getting-started)
-- **Base URL:** `https://api.bitso.com`
+#### FinOps (1)
 
-#### Tags
+What the API costs to run, by operation.
 
-- Juno
-- Stablecoin
-- SPEI
-- Mexico
+- [Bitso Finops](https://apis.io/finops/bitso/bitso-finops/)
 
-#### Properties
+## Where to find this API
 
-- [Documentation](https://docs.bitso.com/juno/docs/getting-started)
-- [Postman Collection](collections/bitso.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/bitso.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-## Common Properties
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
 
 - [Website](https://bitso.com/)
-- [Business](https://bitso.com/business)
 - [Documentation](https://docs.bitso.com/)
-- [Open A P I  Index](https://docs.bitso.com/llms.txt)
-- [LinkedIn](https://www.linkedin.com/company/bitso)
-- [Git Hub](https://github.com/bitso)
-- [Status](https://status.bitso.com/)
+- [Blog](https://blog.bitso.com/)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** API Evangelist
-**URL:** https://apievangelist.com
+**Kin Score 28.0** — thin · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 60.7 |
+| Contract quality | 49.4 |
+| Contract governance | 11.4 |
+| Operational transparency | 10.5 |
+| Developer ergonomics | 23.8 |
+| Access clarity | 13.2 |
+
+**Agent readiness 23.2** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | documented (partial credit) |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | partial |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | derived (partial credit) |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 21.3** — Securities & Market Data
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/bitso/](https://apis.io/providers/bitso/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Bitso: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/bitso/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
